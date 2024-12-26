@@ -84,3 +84,54 @@ FROM Country;
 +-------------+--------+-----+------+------+-------------+--------------+--------------+
 
 
+ SELECT Team, Goal_For, Goal_Against, Goal_Difference, 
+ ROUND(( Goal_For / Played),1) AS Goal_For_Ratio, 
+ ROUND(( Goal_Against / Played),1) AS Goal_Against_Ratio, 
+ ROUND(( Goal_For / Goal_Against),1) AS Goal_Ratio 
+ FROM Country 
+ ORDER BY Goal_Ratio DESC;
+
+
++-------------+----------+--------------+-----------------+----------------+--------------------+------------+
+| Team        | Goal_For | Goal_Against | Goal_Difference | Goal_For_Ratio | Goal_Against_Ratio | Goal_Ratio |
++-------------+----------+--------------+-----------------+----------------+--------------------+------------+
+| Brazil      |      237 |          108 |             129 |            2.1 |                0.9 |        2.2 |
+| Germany     |      232 |          130 |             102 |            2.1 |                1.2 |        1.8 |
+| Netherlands |       96 |           52 |              44 |            1.7 |                0.9 |        1.8 |
+| Italy       |      128 |           77 |              51 |            1.5 |                0.9 |        1.7 |
+| France      |      136 |           85 |              51 |            1.9 |                1.2 |        1.6 |
+| Argentina   |      152 |          101 |              51 |            1.7 |                1.1 |        1.5 |
+| England     |      104 |           68 |              36 |            1.4 |                0.9 |        1.5 |
+| Spain       |      108 |           75 |              33 |            1.6 |                1.1 |        1.4 |
+| Uruguay     |       89 |           76 |              13 |            1.5 |                1.3 |        1.2 |
+| Belgium     |       69 |           74 |              -5 |            1.4 |                1.5 |        0.9 |
++-------------+----------+--------------+-----------------+----------------+--------------------+------------+
+
+
+SELECT Team, MAX(Goal_Difference)
+FROM Country 
+GROUP BY Team
+LIMIT 1;
+
+
++--------+----------------------+
+| Team   | MAX(Goal_Difference) |
++--------+----------------------+
+| Brazil |                  129 |
++--------+----------------------+
+
+
+CREATE VIEW Goal_Performance AS
+SELECT Team,
+ROUND((Goal_For / Played), 1) AS Goal_For_Ratio,
+ROUND((Goal_Against / Played), 1) AS Goal_Against_Ratio
+FROM Country;
+
+SELECT * FROM Goal_Performance WHERE Goal_For_Ratio > 1.5 AND Goal_Against_Ratio < 1;
+
++-------------+----------------+--------------------+
+| Team        | Goal_For_Ratio | Goal_Against_Ratio |
++-------------+----------------+--------------------+
+| Brazil      |            2.1 |                0.9 |
+| Netherlands |            1.7 |                0.9 |
++-------------+----------------+--------------------+
