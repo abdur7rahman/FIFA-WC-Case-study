@@ -135,3 +135,28 @@ SELECT * FROM Goal_Performance WHERE Goal_For_Ratio > 1.5 AND Goal_Against_Ratio
 | Brazil      |            2.1 |                0.9 |
 | Netherlands |            1.7 |                0.9 |
 +-------------+----------------+--------------------+
+
+
+SELECT Team,
+MAX(Goal_For) AS Most_Goal_Scored_Team 
+FROM Country 
+GROUP BY Team 
+LIMIT 1;
+
++--------+-----------------------+
+| Team   | Most_Goal_Scored_Team |
++--------+-----------------------+
+| Brazil |                   237 |
++--------+-----------------------+
+
+SELECT Team,
+ROUND((Goal_Against / Played),2) AS Least_Goal_Conceded_Team_Ratio 
+FROM Country 
+ORDER BY Least_Goal_Conceded_Team_Ratio 
+LIMIT 1;
+
++---------+--------------------------------+
+| Team    | Least_Goal_Conceded_Team_Ratio |
++---------+--------------------------------+
+| England |                           0.92 |
++---------+--------------------------------+
