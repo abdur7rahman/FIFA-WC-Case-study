@@ -1,4 +1,5 @@
 
+-- 1.Summarize the FIFA World Cup performance data for each country.
 
  SELECT * FROM Country;
 
@@ -19,6 +20,8 @@
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  
+-- 2.Which are the top five teams in FIFA World Cup history based on points and titles?
+ 
 SELECT SNo AS Rank, Team, Points, Titles
 FROM Country
 LIMIT 5;
@@ -34,6 +37,8 @@ LIMIT 5;
 +------+-----------+--------+--------+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- 3.Which team has won the most FIFA World Cup titles?
  
 SELECT Team, MAX(Titles) AS Most_Title_Team 
 FROM Country 
@@ -48,6 +53,8 @@ LIMIT 1;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 4.List all teams that have won at least one FIFA World Cup?
+ 
 SELECT Team, Titles 
 FROM Country 
 WHERE Titles > 0 
@@ -65,8 +72,10 @@ ORDER BY Titles DESC;
 | Spain     |      1 |
 +-----------+--------+
 
- --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 5.Which are the top five teams with the most FIFA World Cup tournament participations and matches played?
+ 
 SELECT Team, Tournament_Participated, Played
 FROM Country
 ORDER BY Tournament_Participated DESC, Played DESC
@@ -83,6 +92,8 @@ LIMIT 5;
 +-----------+-------------------------+--------+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- 6.What is the win, draw, and loss percentage for each team based on their FIFA World Cup performance?
  
 SELECT Team, Played, Win, Draw, Loss, 
 ROUND((( Win / Played ) * 100),2) AS Win_Percent, 
@@ -106,6 +117,8 @@ FROM Country;
 +-------------+--------+-----+------+------+-------------+--------------+--------------+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- 7.What is the goal scoring and conceding performance for each team, including goal ratios and goal per match statistics?
  
  SELECT Team, Goal_For, Goal_Against, Goal_Difference, 
  ROUND(( Goal_For / Played),1) AS Goal_For_Ratio, 
@@ -131,7 +144,9 @@ FROM Country;
 +-------------+----------+--------------+-----------------+----------------+--------------------+------------+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- 
+
+-- 8.Which team has the highest goal difference in FIFA World Cup history?
+
 SELECT Team, MAX(Goal_Difference)
 FROM Country 
 GROUP BY Team
@@ -144,6 +159,8 @@ LIMIT 1;
 +--------+----------------------+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- 9.Which teams have a goal-for ratio greater than 1.5 and a goal-against ratio of less than 1?
  
 CREATE VIEW Goal_Performance AS
 SELECT Team,
@@ -161,6 +178,8 @@ SELECT * FROM Goal_Performance WHERE Goal_For_Ratio > 1.5 AND Goal_Against_Ratio
 +-------------+----------------+--------------------+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- 10.Which team has scored the most goals in FIFA World Cup history?
  
 SELECT Team,
 MAX(Goal_For) AS Most_Goal_Scored_Team 
@@ -175,6 +194,8 @@ LIMIT 1;
 +--------+-----------------------+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- 11.Which team has the least goal-conceded ratio in FIFA World Cup history?
  
 SELECT Team,
 ROUND((Goal_Against / Played),2) AS Least_Goal_Conceded_Team_Ratio 
@@ -189,6 +210,8 @@ LIMIT 1;
 +---------+--------------------------------+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- 12.Which teams have a win percentage of 50% or higher in FIFA World Cup history?
  
 CREATE VIEW Win_Percent AS
 SELECT Team, Played, Win, Draw, Loss,
