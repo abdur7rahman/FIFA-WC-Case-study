@@ -43,7 +43,7 @@ FROM Player;
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 SELECT Player_Name, Country, 
-MAX(Goal) As Most_Goal
+MAX(Goal) AS Most_Goal
 FROM Player 
 GROUP BY Player_Name, Country 
 LIMIT 1;
@@ -57,7 +57,7 @@ LIMIT 1;
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 SELECT Player_Name, Country, 
-Assist As Most_Assist
+Assist AS Most_Assist
 FROM Player 
 ORDER BY Assist DESC 
 LIMIT 1;
@@ -71,7 +71,7 @@ LIMIT 1;
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 SELECT Player_Name, Country, 
-Goal_Contribution As Most_Goal_Contribution 
+Goal_Contribution AS Most_Goal_Contribution 
 FROM Player
 ORDER BY Goal_Contribution DESC 
 LIMIT 1;
@@ -85,7 +85,7 @@ LIMIT 1;
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 SELECT Player_Name, Country, 
-Apperences As Most_Apperences
+Apperences AS Most_Apperences
 FROM Player
 ORDER BY Apperences DESC
 LIMIT 1;
@@ -99,7 +99,7 @@ LIMIT 1;
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 SELECT Player_Name, Country, 
-Titles As Most_Titles
+Titles AS Most_Titles
 FROM Player
 ORDER BY Titles DESC
 LIMIT 1;
