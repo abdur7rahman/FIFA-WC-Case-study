@@ -1,4 +1,5 @@
 
+-- 1.Summarize the top football players with their Performance.
 
 SELECT * FROM Player;
 
@@ -19,6 +20,8 @@ SELECT * FROM Player;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 2.What are the goal, assist, and goal contribution ratios for each player?
+  
 SELECT Player_Name, Goal, Assist, Goal_Contribution,
 ROUND(( Goal / Apperences),1) AS Goal_Ratio,
 ROUND(( Assist / Apperences),1) AS Assist_Ratio, 
@@ -42,6 +45,8 @@ FROM Player;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 3.Which player scored the most goals and for which country?
+  
 SELECT Player_Name, Country, 
 MAX(Goal) AS Most_Goal
 FROM Player 
@@ -56,6 +61,8 @@ LIMIT 1;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 4.Who has the most assists and for which country?
+  
 SELECT Player_Name, Country, 
 Assist AS Most_Assist
 FROM Player 
@@ -70,6 +77,8 @@ LIMIT 1;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 5.Who has the most goal contributions and for which country?
+  
 SELECT Player_Name, Country, 
 Goal_Contribution AS Most_Goal_Contribution 
 FROM Player
@@ -84,6 +93,8 @@ LIMIT 1;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 6.Who has the most appearances and for which country?
+  
 SELECT Player_Name, Country, 
 Apperences AS Most_Apperences
 FROM Player
@@ -98,6 +109,8 @@ LIMIT 1;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 7.Who has the most titles and for which country?
+  
 SELECT Player_Name, Country, 
 Titles AS Most_Titles
 FROM Player
@@ -112,6 +125,8 @@ LIMIT 1;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 8.Which players have won at least one title and for which countries?
+  
 SELECT Player_Name, Country, Titles 
 FROM Player 
 WHERE Titles >= 1 
@@ -131,6 +146,8 @@ ORDER BY Titles DESC ;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 9. Which countries have the most players in the Top 10, and how many players do they have?
+  
 SELECT Country, 
 COUNT(Player_Name) AS Total_Players 
 FROM Player 
@@ -150,6 +167,8 @@ GROUP BY Country;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 10. What are the players with a goal contribution ratio greater than 1, and what are their goal contributions?
+  
 CREATE VIEW Goal_Contribute AS 
 SELECT Player_Name, Goal_Contribution,
 ROUND((Goal_Contribution / Apperences),2) AS Goal_Contribution_Ratio 
@@ -167,6 +186,8 @@ WHERE Goal_Contribution_Ratio > 1;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 11.Which player has the highest goal ratio, and what is their goal ratio?
+  
 SELECT Player_Name, Goal, 
 ROUND(( Goal / Apperences),2) AS Goal_Ratio 
 FROM Player 
@@ -181,6 +202,8 @@ LIMIT 1;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 12.Which players have scored 10 or more goals and provided 5 or more assists?
+  
 SELECT Player_Name, Goal, Assist 
 FROM Player 
 WHERE Goal >= 10 AND Assist >=5 
@@ -196,6 +219,8 @@ ORDER BY Goal_Contribution DESC;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- 13.Which player has a goal contribution of 5 or more and appearances of 10 or fewer?
+  
 SELECT Player_Name, Goal_Contribution,Apperences
 FROM Player
 WHERE Goal_Contribution >= 5 AND Apperences <= 10;
